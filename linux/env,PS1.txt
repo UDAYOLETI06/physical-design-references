@@ -1,0 +1,149 @@
+
+Environment variables
+---------------------
+envt variables are used to store info about the env in which program runs such as paths of files and directories,user preference and system setting.
+printenv--->command to check env variables.
+
+The 'export' command in Linux is used to set an environment variable. 
+   export MY_VARIABLE="some_value"
+
+for examples:
+echo --> to print the contents of variables
+echo "$SHELL"
+echo "$BASH"
+echo "$USER
+
+PS1
+-----
+In Linux, PS1 is a shell variable used to define the format of the primary command prompt. It allows users to customize the appearance of the prompt according to their preferences. Here's a breakdown of PS1 along with some examples:
+
+Basic PS1 Structure: The PS1 variable contains special escape sequences, which are replaced by various information when the prompt is displayed. The most common ones are:
+
+\u: Username of the current user.
+\h: Hostname up to the first ".".
+\W: Current working directory (basename).
+\w: Current working directory (full path).
+\d: Date in "Weekday Month Date" format (e.g., "Tue May 26").
+\t: Current time in 24-hour HH:MM:SS format.
+\n: Newline.
+\$: Indicates the type of user: $ for regular user and # for root.
+Examples:
+
+Example 1: Basic Prompt with Username and Directory:
+PS1="\u@\h:\w\$ "
+Output: user@hostname:/current/directory$
+
+Example 2: Prompt with Current Time and Directory:
+PS1="\t \w\$ "
+Output: 14:25:06 /current/directory$
+
+Example 3: Customized Prompt with Colors:
+PS1="\[\033[1;32m\]\u@\h:\[\033[0;34m\]\w\[\033[0m\]\$ "
+This example uses ANSI escape codes to add color. \[\033[1;32m\] sets the text color to green, \[\033[0;34m\] sets the text color to blue, and \[\033[0m\] resets the color to default.
+
+Output: user@hostname:/current/directory$ (with colors)
+
+Example 4: Multiline Prompt:
+PS1="\u@\h:\w\n\$ "
+Output:user@hostname:/current/directory$ 
+Persistent Configuration: To make the PS1 changes permanent, you can add the PS1 assignment to your shell configuration file (e.g., ~/.bashrc for Bash shell). After modifying the file, you need to either reload the shell or reopen a terminal for the changes to take effect.
+
+Customizing PS1 allows users to create prompts that provide useful information or fit their aesthetic preferences, enhancing the command-line experience.
+
+Prompt String (PS1)-->Prompt env variable
+-------------------------------------------
+PS1 is called primary prompt string and it is the default interaction prompt.
+Bash allows these prompt strings (PS) to be customized by inserting a number of backslash-escaped special characters that are decoded as follows:
+
+\a : an ASCII bell character (07)
+\d : the date in "Weekday Month Date" format (e.g., "Tue May 26")
+\D{format} : the format is passed to strftime(3) and the result is inserted into the prompt string; an empty format results in a locale-specific time representation. The braces are required
+\e : an ASCII escape character (033)
+\h : the hostname up to the first '.'
+\H : the hostname
+\j : the number of jobs currently managed by the shell
+\l : the basename of the shellâ€™s terminal device name
+\n : newline
+\r : carriage return
+\s : the name of the shell, the basename of $0 (the portion following the final slash)
+\t : the current time in 24-hour HH:MM:SS format
+\T : the current time in 12-hour HH:MM:SS format
+\@ : the current time in 12-hour am/pm format
+\A : the current time in 24-hour HH:MM format
+\u : the username of the current user
+\v : the version of bash (e.g., 2.00)
+\V : the release of bash, version + patch level (e.g., 2.00.0)
+\w : the current working directory, with $HOME abbreviated with a tilde
+\W : the basename of the current working directory, with $HOME abbreviated with a tilde
+\! : the history number of this command
+\# : the command number of this command
+\$ : if the effective UID is 0, a #, otherwise a $
+\nnn : the character corresponding to the octal number nnn
+\\ : a backslash
+\[ : begin a sequence of non-printing characters, which could be used to embed a terminal control sequence into the prompt
+\] : end a sequence of non-printing characters
+
+Color Codes
+Here are the color codes you can use:
+
+Black: \e[0;30m
+Red: \e[0;31m
+Green: \e[0;32m
+Yellow: \e[0;33m
+Blue: \e[0;34m
+Magenta: \e[0;35m
+Cyan: \e[0;36m
+White: \e[0;37m
+And for bright colors:
+
+Bright Black: \e[1;30m
+Bright Red: \e[1;31m
+Bright Green: \e[1;32m
+Bright Yellow: \e[1;33m
+Bright Blue: \e[1;34m
+Bright Magenta: \e[1;35m
+Bright Cyan: \e[1;36m
+Bright White: \e[1;37m
+Reset Color
+Reset to default color: \e[0m
+
+Some commonly used ENVs in Linux
+Environment Variables
+
+Description
+
+$USER
+
+Gives search path for commands.
+
+$PATH
+
+Gives search path for commands.
+
+$HOME
+
+Gives path of home directory.
+
+$PWD
+
+Gives the path of present working directory.
+
+$HOSTNAME
+
+Gives name of the host.
+
+$LANG
+
+Gives the default system language.
+
+$EDITOR
+
+Gives default file editor.
+
+$UID
+
+Gives user ID of current user.
+
+$SHELL	Gives location of current user’s shell program.
+
+

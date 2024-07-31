@@ -1,0 +1,57 @@
+In Linux, pushd and popd are built-in shell commands used to manage the directory stack. They are particularly useful for navigating between directories quickly without losing track of the directories you have visited. Here's how they work:
+
+pushd
+The pushd command saves the current directory to the stack and then changes to the specified directory. If no directory is specified, it swaps the top two directories on the stack.
+
+Usage:
+
+pushd [directory]
+
+Example:
+$ cd /home/user/project
+$ pushd /var/log
+/var/log /home/user/project
+In this example:
+The current directory is /home/user/project.
+pushd /var/log changes the directory to /var/log and adds /home/user/project to the stack.
+The output shows the current stack with /var/log at the top and /home/user/project next.
+
+popd
+The popd command removes the top directory from the stack and changes the current directory to the new top directory.
+
+Usage:
+popd
+Example:
+$ popd
+/home/user/project
+In this example:
+The current directory is /var/log.
+popd removes /var/log from the stack and changes the directory to /home/user/project.
+The output shows the new top directory, which is /home/user/project.
+
+Practical Example
+------------------
+Start in the home directory:
+
+$ cd ~
+Use pushd to navigate to /etc and save the home directory to the stack:
+
+$ pushd /etc
+/etc /home/user
+
+Now, navigate to /usr/bin using pushd:
+$ pushd /usr/bin
+/usr/bin /etc /home/user
+
+
+Check the current stack:
+$ dirs
+/usr/bin /etc /home/user
+
+Use popd to return to /etc:
+$ popd
+/etc /home/user
+
+Use popd again to return to the home directory:
+$ popd
+/home/user

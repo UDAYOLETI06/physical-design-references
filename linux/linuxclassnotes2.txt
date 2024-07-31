@@ -1,0 +1,71 @@
+File permissions
+****************
+changes the permissions for files and directories
+3 types of users
+  # primary
+  # group
+  # others
+3 permissions for all users we have:
+   # read (r)
+   # write (w)
+   # execute (x)
+2 ways we can give permissions:
+   1. symbolic or text method
+   2. using mode number
+notations
+u:user
+g:group
+o:other
++:add permission
+-: remove permission
+r:read
+w:write
+x:execute
+
+command used to change permissions for files and directories is
+chmod : change mode
+chmod u-w+x,g+x-w,o-wx <file name> {symbolic or text method)
+      this command will change the permissions of user,group and others
+       note + and- are used to add permission and remove permissions repectively.
+chmod 777 new3.doc {using mode number} 777 is given to all user,group and others full permissions
+  
+       decimal       binary         permissions
+                     r w x
+          0          0 0 0               NO
+          1          0 0 1           Execute
+          2          0 1 0           write
+	  3          0 1 1           W & E
+          4          1 0 0           Read
+          5          1 0 1           R & E
+          6          1 1 0           R & W
+          7          1 1 1           R W & E
+
+what pipe?
+pipe are used to redirect a stream from one program to another program.
+the output of one command redirect it to the input of another "|" vertical bar
+command1 | command2 | command3 |... 
+
+ls -l | wc : it prints no.lines,no.of words and no. of bytes of all file present in current directory
+
+Miscellaneous Commands
+----------------------
+
+1.	ls  list all the files and directories.
+2.	pwd  present working directory.
+3.	head display the top 10 lines of the file.
+4.	Tail  Display the bottom 10 lines of the file.
+5.	Tac  Display the lines in the reverse order.
+6.	More  Similar to cat command. We can display large content. 
+7.	Less  we can display small content.
+8.	Id  Display the ID of the user (or) group.
+9.	Ping  check the network connectivity, status of network/server. 
+10.	Hostname  Display the owner name.
+11.	Ps  used to list the currently running processes and their PIDs along with some   
+        other information depends on different options.
+12.	Kill  It is used for manually terminating the processes. 
+13.	who  lets you display the users currently logged in to your UNIX or Linux 
+        operating system.
+14.	Whoami  It displays the username of the current user when this command is 
+        invoked.
+15.	Date displays current date and time
+16.	Cal  display current year calender

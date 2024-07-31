@@ -1,0 +1,132 @@
+
+1. Find Files Using Name in Current Directory
+Find all the files whose name is classes.txt in a current working directory.
+find . -name classes.txt
+
+2. Find Files Under Home Directory
+Find all the files under /home directory with name classes.txt.
+find /home -name classes.txt
+
+3. Find Files Using Name and Ignoring Case
+Find all the files whose name is classes.txt and contains both capital and small letters in /home directory.
+find /home -iname classes.txt
+
+4. Find Directories Using Name
+Find all directories whose name is classes in / directory.
+
+find / -type d -name classes
+
+5. Find PHP Files Using Name
+Find all php files whose name is classes.php in a current working directory.
+find . -type f -name classes.php
+
+6. Find all PHP Files in Directory
+Find all php files in a directory.
+find . -type f -name "*.php"
+
+Part II – Find Files Based on their Permissions
+-----------------------------------------------
+7. Find Files With 777 Permissions
+Find all the files whose permissions are 777.
+find . -type f -perm 0777 -print
+
+8. Find Files Without 777 Permissions
+Find all the files without permission 777.
+find / -type f ! -perm 777
+
+9. Find SGID Files with 644 Permissions
+Find all the SGID bit files whose permissions set to 644.
+find / -perm 2644
+
+10. Find Sticky Bit Files with 551 Permissions
+Find all the Sticky Bit set files whose permission are 551.
+find / -perm 1551
+
+11. Find SUID Files
+Find all SUID set files.
+find / -perm /u=s
+
+12. Find SGID Files
+Find all SGID set files.
+find / -perm /g=s
+
+13. Find Read Only Files
+Find all Read Only files.
+find / -perm /u=r
+
+14. Find Executable Files
+Find all Executable files.
+find / -perm /a=x
+
+15. Find Files with 777 Permissions and Chmod to 644
+Find all 777 permission files and use chmod command to set permissions to 644.
+find / -type f -perm 0777 -print -exec chmod 644 {} \;
+
+16. Find Directories with 777 Permissions and Chmod to 755
+find / -type d -perm 777 -print -exec chmod 755 {} \;
+
+17. Find and remove single File
+To find a single file called classes.txt and remove it.
+find . -type f -name "nehraclasses.txt" -exec rm -f {} \;
+
+18. Find and remove Multiple File
+To find and remove multiple files such as .mp3 or .txt, then use.
+find . -type f -name "*.txt" -exec rm -f {} \;
+OR
+find . -type f -name "*.mp3" -exec rm -f {} \;
+
+19. Find all Empty Files
+To find all empty files under a certain path.
+find /tmp -type f -empty
+
+20. Find all Empty Directories
+To file all empty directories under a certain path.
+find /tmp -type d -empty
+
+21. File all Hidden Files
+To find all hidden files, use the below command.
+find /tmp -type f -name ".*"
+
+22. Find Single File Based on User
+To find all or single file called nehraclasses.txt under / root directory of owner root.
+find / -user root -name nehraclasses.txt
+
+23. Find all Files Based on User
+To find all files that belong to user nehraclasses under /home directory.
+find /home -user nehraclasses
+
+24. Find all Files Based on Group
+find /home -group developer
+
+25. Find Particular Files of User
+find /home -user nehraclasses -iname "*.txt"
+
+26. Find Last 50 Days Modified Files
+find / -mtime 50
+
+27. Find Last 50 Days Accessed Files
+find / -atime 50
+
+28. Find Last 50-100 Days Modified Files
+find / -mtime +50 –mtime -100
+
+29. Find Changed Files in Last 1 Hour
+find / -cmin -60
+
+30. Find Modified Files in Last 1 Hour
+find / -mmin -60
+
+31. Find Accessed Files in Last 1 Hour
+find / -amin -60
+
+32. Find 50MB Files
+find / -size 50M
+
+33. Find Size between 50MB – 100MB
+find / -size +50M -size -100M
+
+34. Find and Delete 100MB Files
+find / -type f -size +100M -exec rm -f {} \;
+
+35. Find Specific Files and Delete
+find / -type f -name *.mp3 -size +10M -exec rm {} \;

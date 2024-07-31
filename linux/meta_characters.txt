@@ -1,0 +1,86 @@
+Wildcards
+---------
+*: Matches zero or more characters.
+Example: ls *.txt lists all files ending in .txt.
+
+?: Matches exactly one character.
+Example: ls file?.txt matches file1.txt, file2.txt, but not file10.txt.
+
+[ ]: Matches any one of the enclosed characters.
+Example: ls file[123].txt matches file1.txt, file2.txt, or file3.txt.
+
+[! ]: Matches any character not enclosed.
+Example: ls file[!123].txt matches file4.txt, file5.txt, but not file1.txt.
+
+Quoting
+-------
+\: Escapes the next character, making it literal.
+Example: echo \$HOME prints $HOME instead of the value of the environment variable.
+
+' ': Single quotes prevent the shell from interpreting any meta characters inside them.
+Example: echo 'This is a $VARIABLE' prints This is a $VARIABLE.
+
+" ": Double quotes prevent most interpretations, except for $, `, and \.
+Example: echo "Home directory is $HOME" prints the value of the $HOME variable.
+
+Redirection
+
+>: Redirects output to a file, overwriting the file if it exists.
+Example: echo "Hello, world!" > hello.txt writes Hello, world! to hello.txt.
+
+>>: Appends output to a file.
+Example: echo "Hello again!" >> hello.txt appends Hello again! to hello.txt.
+
+<: Redirects input from a file.
+Example: sort < unsorted.txt sorts the contents of unsorted.txt.
+
+2>: Redirects standard error to a file.
+Example: command 2> error.log writes any errors from command to error.log.
+
+2>&1: Redirects standard error to standard output.
+Example: command > output.log 2>&1 redirects both standard output and standard error to output.log.
+
+Pipes
+|: Passes the output of one command as input to another.
+Example: ls -l | grep '^d' lists directories in the current directory.
+
+Command Substitution
+
+` `: Executes the command inside and substitutes its output.
+Example: echo "Today is date" prints the current date in the sentence.
+
+$( ): Another form of command substitution, often preferred for readability.
+Example: echo "Today is $(date)" does the same as above.
+
+Logical Operators
+&&: Logical AND. Executes the second command only if the first succeeds.
+Example: mkdir newdir && cd newdir creates and changes to newdir if mkdir succeeds.
+
+||: Logical OR. Executes the second command only if the first fails.
+Example: mkdir newdir || echo "Failed to create directory".
+
+;: Command separator. Allows multiple commands in one line.
+Example: cd /var; ls changes to /var and then lists its contents.
+
+Parentheses and Braces
+( ): Subshell. Commands inside are executed in a subshell.
+Example: (cd /var && ls) changes to /var, lists its contents, but doesn’t affect the current shell.
+
+{ }: Command group. Groups commands without creating a subshell.
+Example: { cd /var && ls; } does the same but affects the current shell.
+
+Redirecting the Output of Multiple Commands
+
+
+{ echo "Line 1"; echo "Line 2"; } > output.txt
+Explanation: Both echo commands are executed, and their combined output is redirected to output.txt.
+
+{ cd /some/directory && ls -l; } || echo "Failed to change directory"
+Explanation: This command attempts to change to /some/directory and lists its contents if successful. If the cd command fails, it prints "Failed to change directory".
+Behavior:
+If the directory change is successful, it lists the contents.
+If the directory change fails, it prints an error message
+
+{ mkdir -p my/mydir && cd my/mydir && touch file1 file2; }
+
+Understanding and utilizing these meta characters can significantly enhance your efficiency and capability when working with the Linux shell.

@@ -1,0 +1,73 @@
+cut command 
+-----------
+The cut command in linux is a command for cutting out the sections from each line of files and writing the result to standard output. It can be used to cut parts of a line by byte position, character, and field.
+
+The basic syntax of the cut command is:
+      cut OPTION... [FILE]...
+
+Here is a list of the most commonly used options with the `cut` command:
+
+-b, –bytes=LIST
+
+Selects only the bytes specified in LIST (e.g., -b 1-3,7).
+
+-c, –characters=LIST
+
+Selects only the characters specified in LIST (e.g., -c 1-3,7).
+
+-d, –delimiter=DELIM
+
+Uses DELIM as the field delimiter character instead of the tab character.
+
+-f, –fields=LIS
+
+Selects only the fields specified in LIST, separated by the delimiter character (default is tab).
+
+-n
+
+Do not split multi-byte characters (no effect unless -b or -c is specified).
+
+–complement
+
+Invert the selection of fields/characters. Print the fields/characters not selected.
+
+Awk command
+-----------
+Awk is a scripting language used for manipulating data and generating reports. The awk command programming language requires no compiling and allows the user to use variables, numeric functions, string functions, and logical operators. 
+
+Awk is a utility that enables a programmer to write tiny but effective programs in the form of statements that define text patterns that are to be searched for in each line of a document and the action that is to be taken when a match is found within a line. Awk is mostly used for pattern scanning and processing. It searches one or more files to see if they contain lines that matches with the specified patterns and then perform the associated actions. 
+
+Awk is abbreviated from the names of the developers – Aho, Weinberger, and Kernighan.
+
+1. AWK Operations: 
+(a) Scans a file line by line 
+(b) Splits each input line into fields 
+(c) Compares input line/fields to pattern 
+(d) Performs action(s) on matched lines 
+
+2. Useful For: 
+(a) Transform data files 
+(b) Produce formatted reports 
+
+3. Programming Constructs: 
+(a) Format output lines 
+(b) Arithmetic and string operations 
+(c) Conditionals and loops 
+
+Syntax:
+
+awk options 'selection _criteria {action }' input-file > output-file
+
+
+Built-In Variables In Awk
+--------------------------
+
+Awk’s built-in variables include the field variables—$1, $2, $3, and so on ($0 is the entire line) — that break a line of text into individual words or pieces called fields. 
+
+NR: NR command keeps a current count of the number of input records. Remember that records are usually lines. Awk command performs the pattern/action statements once for each record in a file. 
+NF: NF command keeps a count of the number of fields within the current input record. 
+FS: FS command contains the field separator character which is used to divide fields on the input line. The default is “white space”, meaning space and tab characters. FS can be reassigned to another character (typically in BEGIN) to change the field separator. 
+RS: RS command stores the current record separator character. Since, by default, an input line is the input record, the default record separator character is a newline. 
+OFS: OFS command stores the output field separator, which separates the fields when Awk prints them. The default is a blank space. Whenever print has several parameters separated with commas, it will print the value of OFS in between each parameter. 
+ORS: ORS command stores the output record separator, which separates the output lines when Awk prints them. The default is a newline character. print automatically outputs the contents of ORS at the end of whatever it is given to print. 
+

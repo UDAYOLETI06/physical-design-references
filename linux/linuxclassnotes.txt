@@ -1,0 +1,154 @@
+Linus Torvalds,University of Helsinki,1991
+
+Why linux?
+ *linux is best suited for multiuser and multitask application.
+ *linux is more attractive because it comes free of cost,open source software
+ Note-unix and linux are case sensitive
+ *linux has very important concept called 'terminal",is the gateway to the linux os.
+
+Properties of Linux
+Linux Pros
+----------
+• Linux is free
+• Linux is portable to any hardware platform:
+• Linux was made to keep on running:
+• Linux is secure and versatile:
+• Linux is scalable:
+• The Linux OS and most Linux applications have very short debug-       
+  times
+
+Linux Cons
+----------
+• There are far too many different distributions
+• Linux is not very user friendly and confusing for beginners
+
+example of linux OS
+Debian,Ubuntu,Fedora,Arch linux
+
+
+Installing Linux in windows os
+ *Two ways
+    1.VM Ware
+         *linux os inside windows os
+    2.Cygwin
+        * How install cygwin
+          While installing cygwin choose the following packages
+            .PERL 
+            .Python
+            .TCL
+            .gvim
+Understanding Cygwin
+ *windows start type cygwin
+understanding cygwin directory struture
+  *System harddisk  is named as cygdrive
+  *All the drives of my windows os will be present under/cygdrive
+  *All directories(folders) are accessed using '/'(delimiter)separation
+  *In Linux 'Tab'key play an important roll
+  *tab button on keyboard is used to automatically fill the paths and names 
+
+echo 'alias ll="ls -l"' >> ~/.bash_profile
+bash:bourne again shell
+pwd:present working directory
+cd: change directory
+cd /:root directory
+cd ~:Home directory
+cd .. goes to previous directory
+cd ../../../ goes to previous directories(3 steps previous)
+cd path1/path2/path3/: Absolute Path
+cd 'dir name' :if directory name is 'my name'
+cd "dir name" :if directory name is "my name"
+cd dir\ name   :if directory name is my\ name
+clear:it clear the terminal screen
+ls:list the directory and files
+man <command>:manual of given command
+q: to exit from manual
+ls /:list of root directory contents
+ls ~:list of home directory contents
+ls dir_name: list of "dir_name" contents
+ls .. list the contents of previous directory
+ls -l:long listing format
+ls -a: list the hidden file and directories (list all files and directories)
+ls -la: long list with hidden directories
+ls -sl list the contents according to size
+ls -t : sort by time, newest first;
+ls -r : reverse order while sorting
+ls -ltr:long list with time and reverse sorting
+ls -d */:list of only directories
+
+File management
+---------------
+command used to create files are
+ *touch
+ *cat
+touch <filename1.ext> <filename2.ext> 
+touch filename{1..10}.txt
+How to open multiple files in vim editor
+vi <firstfilename> In vim give :tabnew <secondfilename>
+touch directory/filename --> this command create a file in a directory directly
+this command creates the file 
+ cat: its echoes what you typed
+*cat: concatenate files and print on the standard output
+ cat file_name:display the contents of the file
+ cat dir1/filename 
+ cat -b filename : add the line numbers to non-blank lines
+ cat -n filename : add the line numbers to all lines
+ cat > filename  : '>' this redirects and open the file for edit
+ cat >> filename : '>>' this appends and edit without overwriting the previous data of file
+cat file1 > file2 this command redirect the contents file1 to file2
+cat dir1/filename display the content of the filename.
+
+To create different type extention files with different names
+------------------------------------------------------------- 
+     for i in $(seq 1 5)
+     do
+     touch file$i.txt File$i.v newfile$i.py Sample$i.c Program$i
+     done
+
+Make Directories
+----------------
+mkdir <directory_name>: make directory
+mkdir <name1> <name2> <name3>
+mkdir <name1>/<name2>
+mkdir dir{1..10}
+mkdir -p <name1>/{name2,name3,name4}
+mkdir -p <name1>/<name2>/<name3>/<name4>
+mkdir -pv <name1>/<name2>/<name3>/<name4>
+mkdir -p  its creates the directories with parent directory with sub directory
+mkdir -pv print a message for each created directory
+ls -R list out the directory structure 
+ 
+rm & rmdir commands
+-------------------
+rmdir <dir_name>
+rmdir -p <name1>/<name2>/<name3>/<name4>
+rmdir -pv <name1>/<name2>/<name3>/<name4>
+rm -rv <name1> rv--> means recrussive verbose
+
+copying directories
+******************** 
+cp :{souce file/dir to destination file/dir}
+cp sum1 sum2; [sum1 is copied to sum2]
+cp filename{1..10}.txt directory
+cp -r dir1 new_dir {it creates a new_dir and copies the content of dir1} 
+cp -r dir1 dir3 { if dir3 already exists,it will copy the dir1 to dir3}{
+cp -i without overwrite
+cp ../test1.txt ../test2.txt . from previous directory it takes the files and copy to current directory [dot represent current directory]
+
+
+Move Directories/files
+
+mv source dir1 destination dir2 [dir1 moved to dir2]
+mv dir1 ./dir11/dir12/dir13/dir14 {note '.' represent current directory}in this above command dir1 moved to sub directory dir14
+mv -i file3.txt dir1
+how to rename directories
+mv junk junk1 {here the junk directory renamed as junk1} so 'mv' can be used for rename also
+ mv example /cygdrive/c/Users/VLSIGURU/Desktop/ this command will move directory 'example' to desktop by the path given my us.
+mv filename{1..10}.txt directory
+
+Note: 1.mv command we can move  single source_file to single destination_file
+      2.we can move multiple files to single directory (but the directory should exist)
+      3.we can move single directory to single directory(its not compulsory that  
+        destination directory should exist)
+      4.we can move multiple directories to single directories(but destination directory 
+        should exist)
+

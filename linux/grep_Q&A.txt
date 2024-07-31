@@ -1,0 +1,60 @@
+grep command [Global regular expression Print]
+----------------------------------------------
+The grep command in Unix/Linux is a powerful tool used for searching and manipulating text patterns within files. Its name is derived from the ed (editor) command g/re/p (globally search for a regular expression and print matching lines), which reflects its core functionality. grep is widely used by programmers, system administrators, and users alike for its efficiency and versatility in handling text data. In this article, we will explore the various aspects of the grep command.
+
+      syntax: grep[option] pattern[filename]
+
+        cat filename | grep pattern
+egrep command is used to search multiple regular patterns.
+
+difference between grep and egrep
+# egrep 'regular pattern and string pattern' filename
+# grep "string pattern" filename.
+-c--> display count of matching lines.
+-h--> display all the matching lines
+-l--> display all the filename in which pattern matches
+-n--> display all the matching lines with line number
+-v--> display all the non matching lines
+-o--> display only the matching pattern
+-e--> use multiple search patterns in single file.
+^---> match the lines which starts with given pattern
+char$-->end of the line with given char
+-i--> ignores the case sensitive
+-A{no.of lines} displays the lines after the search pattern eg: -A2
+-B{no.of lines} displays the lines before the search pattern eg: -B1
+-C{no.of lines} displays the lines after and before the search pattern eg: -C2
+
+SOME EXAMPLES ON GREP COMMAND
+-----------------------------
+Case1: To ignore the upper and lower case while searching using grep command in Linux
+        grep -i pattern filename
+ Case2: To search everything except given pattern/keyword using grep command in Linux
+        grep -v pattern filename
+Case3: To print how many times (count) given keyword present in file using grep command in Linux
+             grep -c pattern filename
+ Case4: To search for exact match of given keyword in a file using grep command in Linux
+             grep -w pattern filename
+ Case5: To print the line no. of matches of given keyword in a file using grep command in Linux
+            grep -n pattern filename
+ Case6: To search a given keyword in multiple files using grep command in Linux
+             grep -i pattern file1 file2 file3
+ Case7: To suppress file names while search a given keyword in multiple files using grep command in Linux
+                    grep -h pattern file1 file2 file3
+ Case8: To search multiple keywords in a file using grep command in Linux
+                 grep -ie pattern1 -e pattern2 filename
+ Case8: To search multiple keywords in multiple file using grep command in Linux
+                egrep 'p1|p2|p3' file1 file2 file3
+ Case9: To only print file names which matches given keywords using grep command in Linux
+                grep -l pattern filename
+ Case10: To get the keywords/pattern from a file and match with a another file using grep command in Linux
+                grep -f keyword.txt filename  [the content of keyword.txt is the pattern to search in filename]
+ Case11: To print the matching line which start with given keyword using grep command in Linux
+            grep -i '^pattern' filename
+ Case12: To print the matching line which end with given keyword using grep command in Linux
+            grep -i 'pattern$' filename
+ Case13: Suppose we have 100 files in a directory (dirA) and we need to search a keyword in all the files using grep command in Linux 
+         grep -i -R pattern dirA
+ Case14: We can use egrep command for the multiple keywords search using grep command in Linux
+          egrep 'p1|p2|p3' filename
+ Case15: If you just wanna search but don't want to print on terminal or If you want to suppress error message using grep command in Linux
+            grep -q pattern filename

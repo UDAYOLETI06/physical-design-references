@@ -1,0 +1,593 @@
+                                            ------------------------------------
+                                                        UNIX COMMANDS
+                                             -----------------------------------
+------------------------
+working with directories
+------------------------
+
+1.to see the existing path
+	pwd
+
+2.to make a new directory
+	mkdir <directory>
+
+3.to remove a directory
+	rmdir <directory>
+	rm -rf <directory>
+         
+4.to go into the directory
+	cd  <directory>
+
+5.to come out of the directory
+	cd ..
+	cd ../..
+     cd - 		(previous location)
+6.to see the contents of a directory
+	ls		#only listing
+	ls -l 		#listing+properties 
+	ls -Rx		#heirarchy
+
+6a.to copy a directory
+	cp -rf <directory> <destination path>
+
+--------------------
+working with files
+--------------------
+
+7.to create a file
+	touch <file>
+	vi <file>
+	vim <file>
+	gvim <file>
+
+8.to see a file
+	vi <file>
+	vim <file>
+	gvim <file>
+	gvim -O file1 file2			#opens both the files simultaneously
+	gvim -p file1 file2			#opens both the files simultaneously in tabs
+	gvim -p *				#to open all files in tabs
+
+9.to rename a file
+	mv <file1> <file2>
+
+10.to remove a file
+	rm <file>
+	rm -rf <file>
+
+11.to copy a file
+	cp <file> <destination>
+	cp <source> <destination>
+	cp -rf <file/directory> <destination>
+	cp <source> .						#copies from source to current location
+
+11.a.to move a file to another location
+	mv <file> <destination>
+	
+12.changing permission (read write executable) of a file
+	chmod [r][w][x] [r][w][x] [r][w][x]   # first for user,second for group,third for others
+for example
+	chmod 751 <file>      		#7 means 111 5 means 101 1 means 001,that means rwx for user r_x for group __x for others 
+
+
+12.a tarring and zipping
+
+	tar -cvf  file.tar <Dir>			#tarring
+	gzip file.tar    				#zipping
+	tar -cvzf file.tar.gz <Dir>		#tarring and zipping together
+	
+
+12.b untarring and unzipping
+
+	gzip -d file_tar.gz				#untarring
+	tar -xvf  file_tar				#unzipping
+	tar -xvzf fire.tar.gz			#untarring and unzipping together
+--------------
+editing files
+--------------
+
+#escape mode
+
+13.to delete whole line
+	dd      
+
+14.to copy whole line
+	yy
+	10yy			#copies 10 lines below the cursor
+
+15.to paste
+	p
+	10p			#paste 10 times  
+
+16.to delete a single letter
+	x
+
+17.to open new lines
+	o
+
+18.to replace a letter
+	r
+	<shift> r
+19.searching 
+	
+    :/word     			#Search word from top to bottom
+    :?word     			#Search word from bottom to top
+    :/jo[ha]n    		#Search john or joan
+    :/\< the     		#Search the, theatre or then
+    :/the\>      		#Search the or breathe
+    :/\<fred\>/     		#Search fred but not alfred or frederick
+    :/fred\|joe  		#Search fred or joe
+    :/^\n\{3}     		#Find 3 empty lines
+    :bufdo /searchstr/   	#Search in all open files
+
+	Syntax       Pattern 
+        a*bc         abc aabc aaaaabc
+        a.c          aac abc azc
+	abc .* xyz
+        a[b2m]c      abc a2c amc
+        a[0-2b-d]c   a0c a1c a2c  ----  abc  acc adc
+        a[^0-2]c     a3c a4c axc
+        a\{3,\}      3 or more than 3 a
+        a\{3,5\}     between 3 to 5 a's
+        
+	
+20.searching and replacing
+
+    :%s/old/new/g     				#Replace all occurences of old by new in file
+    :%s/old/new/gw     				#Replace all occurences with confirmation
+    :2,35s/old/new/g    				#Replace all occurences between lines 2 and 35
+    :5,$s/old/new/g     				#Replace all occurences from line 5 to EOF
+    :%s/^/hello/g     				#Replace the begining of each line by hello
+    :%s/$/Harry/g     				#Replace the end of each line by Harry
+    :%s/$/\tHarry/g   				#Replaces with tab
+    :%s/onward/forward/gi     		#Replace onward by forward , case unsensitive
+    :%s/ *$//g     					#Delete all white spaces
+    :g/string/d     				#Delete all lines containing string
+    :17,/foo/d                          #delete all lines from line 17 up to 'foo'
+    :v/MPINV/d     					#Delete all lines  which don't contain sting
+    :s/Bill/Steve/     				#Replace the first occurence of Bill by Steve in current line
+    :s/Bill/Steve/g     				#Replace Bill by Steve in current line
+    :%s/Bill/Steve/g     			#Replace Bill by Steve in all the file
+    :%s/w=\([0-9]*\.[0-9]*\)U /W=\1 /g	#replace w=something with pattern 1 ,i.e. without U.
+    :%s/w=\([0-9]*\.[0-9]*\). /W=\1 /g  #replace with pattern1 anything ahead the pattern (here it will be changing accuracy of decimal digits)
+    :%s/\r//g     					#Delete DOS carriage returns (^M)
+    :%s/\r/\r/g     				#Transform DOS carriage returns in returns
+    :%s#]\+>##g     				#Delete HTML tags but keeps text
+    :%s/^\(.*\)\n\1$/\1/     			#Delete lines which appears twice
+    Ctrl+a     					#Increment number under the cursor
+    Ctrl+x     					#Decrement number under cursor
+
+   
+ 
+    :.,$s/abc/efg/g                              	      		# subtitute abc with efg from current line to last line
+    :.,$s/ab./efg/g
+    :.,$s/ab[a-z]/efg/g
+    :g/set/s/black/white/g				      			# where set is found replace black with white
+    :g/set/!s/black/white/g					   
+    :%s/\(.*param.*=.*\) \(MIN.*\)/\1\ '\2\'/g
+    :/hello/!s/aaa/bb/                                        	# unless 'hello' is found, replace 'aaa' with 'bb'              
+    :g/MFPT1\/P1_[0-9]*/s/W=[0-9]*\.[0-9]* /W=2\.025 /g       
+    :g/MFPT1\/P1_[0-9]*/s/W=[0-9]*\.[0-9]* /W=2\.025 /g       	# search pattern MFPT1/P1..numbers ,replace W=..number to W=2 
+    :g/MFPT1\/P1_[0-9]*/s/\<W=[0-9]*\.[0-9]*\> /W=2 /g      
+    :%s/w=\([0-9]*\.[0-9]*\)U /W=\1 /g			      		# search and replace w=something with pattern1 (patern inside small braces)		
+    :%s/\(.*param.*=.*\) \(MIN.*\)/\1\ '\2\'/g
+    :%s/w=\([0-9]*\.[0-9]*\). /W=\1 /g			      		#to reduce the accuracy of decimal points
+    :%s/W=\<[0-9]*.[0-9]*\>/&U/g                              	#where W=  is found add U in the end                                
+    :g/hello/,/goodbye/d                                      	#delete all lines between hello and goodbye
+    :g/^ *$/d                                       	      	#deletes all lines which is blank or tab
+    :g/^ *$/di                                      	      	#deletes all lines which is blank or tab
+    :23,/abd/d                                                	#from line 23 to first match of abd will get deleted
+    :g/FPT.\/P.IO.*DATFLOP\/QF_X/s/^/#/g                      	#FPT3/P2IO[30]/DATFLOP/ISCAN2/SC2B         FPT3/P2IO[30]/DATFLOP/QF_X
+    :g/C_EST/s/ [1-9]*.[0-9]*f $/ 1f/g
+    :g/ISTCNTL/s/w=0.7/w=0.32/g
+    :g/xistcntl/s/w=0.7/w=0.32/g
+    :g/vss vdd vss vss/d                                      	#searches these pattern together and delets the line 
+   
+	
+
+21.setting
+	:se nu			#sets the number on lines
+	:se syn off
+	:w <File>
+	:x,y w <File>
+	:x,y d
+	:r <file>
+	:set wrap!
+	:set ignorecase     	#Ignore case in searches
+    	:set smartcase     		#Ignore case in searches excepted if an uppercase letter is used
+    	:%s/\<./\u&/g     		#Sets first letter of each word to uppercase
+    	:%s/\<./\l&/g     		#Sets first letter of each word to lowercase
+    	:%s/.*/\u&     		#Sets first letter of each line to uppercase
+    	:%s/.*/\l&     		#Sets first letter of each line to lowercase	
+
+22.sorting
+
+	sort -u   FileName >  file			#<ascending/decending>
+	sort -n   FileName					#<numeric>
+	sort -k3  FileName					#<field/column>; column seperator is space
+
+23.selecting
+
+	ctl+ v then release key and select column and row portion	    #Select column
+	shift+ v then release key and selecting row using cursor	    #Row Select
+
+24.Read/Write files
+
+    	:1,10 w >outfile     		#Saves lines 1 to 10 in outfile
+    	:1,10 w >> outfile    		#Appends lines 1 to 10 to outfile
+    	:r infile    				#Insert the content of infile
+    	:23r infile     			#Insert the content of infile under line 23
+
+
+25.file explorer
+    :e .    	 			 	#Open integrated file explorer
+    :Sex     	 			 	#Split window and open integrated file explorer
+    :browse e   			 	#Graphical file explorer
+    :ls     				 	#List buffers
+    :args     				 	#List files
+    :args *.php			 	#Open file list
+    :grep expression *.php     	#Returns a list of .php files contening expression
+    :gf     					#Open file name under cursor
+
+
+26.Interact with Unix
+    :!pwd     				#Execute the pwd unix command, then returns to Vi
+    !!pwd     				#Execute the pwd unix command and insert output in file
+    :sh     				#Temporary returns to Unix
+    $exit     				#Returns to Vi
+
+
+26.Alignment
+    :%!fmt     			#Align all lines
+    :!}fmt     			#Align all lines at the current position
+    :!!fmt     			#Align the next 5 lines
+
+27.Tabs
+    :tabnew      		#Creates a new tab
+    :gt    			#Show next tab
+    :tabfirst     		#Show first tab
+    :tablast     		#Show last tab
+    :tabm n(position)     	#Rearrange tabs
+    :tabdo %s/foo/bar/g     	#Execute a command in all tabs
+    :tab ball     			#Puts all open files in tabs
+
+
+28.Window spliting
+    :sp					#Split window above
+    :vs                       #Split window  side
+    :e filename     		#Edit filename in current window
+    :split filename     		#Split the window and open filename
+    ctrl-w up arrow     		#Puts cursor in top window
+    ctrl-w ctrl-w     		#Puts cursor in next window
+    ctrl-w_     			#Maximise current window
+    ctrl-w=     			#Gives the same size to all windows
+    10 ctrl-w+     			#Add 10 lines to current window
+    :vsplit file     		#Split window vertically
+    :sview file     		#Same as :split in readonly mode
+    :hide     				#Close current window
+    :only     				#Close all windows, excepted current
+    :b 2     				#Open #2 in this window
+
+29.to include a file in another file
+	.include <file path>
+	gf <==>:bp		#to shuttle between these two files 
+
+30.Auto-completion
+    Ctrl+n Ctrl+p     		#(insert mode)  Complete word
+    Ctrl+x Ctrl+l     		#Complete line
+    :set dictionary=dict     	#Define dict as a dictionnary
+    Ctrl+x Ctrl+k     		#Complete with dictionnary
+
+
+31.Marks
+    mk     			#Marks current position as k
+    k     			#Moves cursor to mark k
+    dk     			#Delete all until mark k
+
+32.Abbreviations
+    :ab pr printf("This is a Demo Ver \n");    Define pr as abbreviation of printf("This is a Demo Ver \n");
+
+33.Text indent
+    :set autoindent     		#Turn on auto-indent
+    :set smartindent     	#Turn on intelligent auto-indent
+    :set shiftwidth=4     	#Defines 4 spaces as indent size
+    ctrl-t, ctrl-d     		#Indent/un-indent in insert mode
+    >>     				#Indent
+    <<     				#Un-indent
+    >/<	
+
+34.Syntax highlighting
+    :syntax on     			#Turn on syntax highlighting
+    :syntax off     		#Turn off syntax highlighting
+    :set syntax=perl     	#Force syntax highlighting    
+
+
+
+35.Editing a File
+
+    :e[dit]     		#Edit the current file. This is useful to re-edit the current file, when it has been changed outside of Vim.
+    :e[dit]!     		#Edit the current file always. Discard any changes to the current buffer. This is useful if you want to start all over again.
+    :e[dit] {file}     	#Edit {file}.
+    :e[dit]! {file}     	#Edit {file} always. Discard any changes to the current buffer.
+    :gf     			#Edit the file whose name is under or after the cursor. Mnemonic: "goto file".
+
+#.............................................................gvim........................................................
+
+   	:set gfn?                   		#get the font and copy it in .vimrc
+	gf  ==>:bp ==>:e# 				#mapped to F1
+	:ls  then  					#list all buffer
+	:buffer N                      	#where N is buffer number
+	:%							#matching if/while
+
+#copy the below commands also inside your ~/.vimrc file, this will be useful such that while using gf the file will be opened in new tab.
+ 
+map <C-G> :echo expand('%:p')<ENTER>
+map gf <c-w>gf
+
+
+	
+#--------------------------------------------------------on terminal commandline + shell scripting---------------------------------------------------------------#
+
+a. 	set autolist
+
+---------
+36.sed
+---------
+
+
+       
+
+     sed -e'/MFPT1\/P1_[0-9]*/s/\<W=[0-9]*\.[0-9]*\> /W=2 /g'               #search MFPT1/P1..something replace W=something with W=2
+     sed '/Owner:/{s/yours/mine/g;s/your/my/g;s/you/me/g;}' file
+     sed -e '17,/foo/d'                                                     #delete all lines from line 17 up to 'foo'
+        
+     sed 's/foo/bar/4' file                                                 #replaces only 4th instance in a line
+     sed  's/XXX/'$value'/'                                                 #variable usage inside sed
+     sed -e 's/W=\<[0-9]*.[0-9]*\>/&U/g' CKT1                               #"W=1.025 L=0.006" ==>W=1.025U L=0.006
+
+     sed -e '/hello/,/goodbye/d'         file                               #Address segment of line between hello to goodbye and deletes
+	sed -n '/hello/,/goodbye/p'         file                               #Address segment of line between hello to goodbye and prints
+     sed -e '1,2s/line/LINE/'            file                               #addressed by line number to perform action of replace
+     sed -e "1,3d"			    file                               #addressed by line number to perform action delete
+	sed -n "1,3p"			    file 			       #prints only lines 1 to 3 
+     sed -e 's/nasim/d ;s/asma/d'        file                               #delete the line where ever it finds nasim or asma
+     sed -e '/not/s/black/white/g'       file                               #addressed by patten to perform action of replace
+
+     sed -e '/^[[:space:]]*$/d'          file                               #deletes all lines which has spce or tab
+     sed -e '/^\s*$/d'                   file                               #deletes all lines which has spce or tab
+     sed -e '/awk/\!s/nasim/ttt/g'       file                               #don't replace nasim to tt if awk is there in line
+	sed -e 's/\[/_/g;s/]//g'                                               #replaces A[10] to A_10
+     sed -n 's/'$1'/&/p' file                                               #passing variable in sed                                         
+	sed -e '1,2s/line/LINE/' <FileName> 
+	sed -e '1,2s/line/LINE/' -e '1,2s/tabis/abdullah/'-e '5,6s/abdullah/tabis/' File      	#using many sed simultaneosly
+	cat  File | sed -e '1,2s/line[0-9]*/LINE/'
+     echo 'a b c l=0.06 w=0.15' | sed -e 's/l=[0-9.]*/l=0.02/g'				#changing length
+	echo 'a b c l=0.06 w=0.15' | sed -e 's/l=\([0-9.]*\) /l={\1-0.02} /g'			#pattern1 -0.02 (decreasing length by 0.02)
+   	echo 'a b c l=0.06 w=0.15' | sed -e 's/l=[0-9.]*/l=0.02/g'                                             
+	echo 'a b c l=0.06 w=0.15' | sed -e 's/l=\([0-9.]*\) /l={\1-0.02} /g'                              		
+     echo 'C123 node1 node2 12ff' | sed -e 's/^C\(.*\) \(.*\)/C\1 {\2*mpar}/g'                          	
+     echo 'C123 node1 node2 12ff  $X=123  $Y=234' | sed -e 's/^C\(.*\) \([0-9]*\)ff /C\1 {\2ff*mpar} /g'     	
+     echo 'C123 node1 node2 12e-15  $X=123  $Y=234' | sed -e 's/^C\(.*\) \([0-9e-]\{1,\}\) /C\1 {\2*mpar} /g'
+   
+
+      -----------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+---------
+38.awk
+---------
+	awk '{print $4}' file													#printing fourth feild
+	awk '{print $1,$2,$4}'	file												#printing multiple feild
+	awk 'NR==3 {print $1,$2}' file											#prints Ist and IInd field of third row
+	awk 'NR==3,NR==6 {print $1,$2}' file										#from third row to sixth row 
+	awk '{printf("%-30s %-20f %-10f\n", $1, $2, $3)}' File    						#formatting the o/p 
+     awk '{print s +=$4}' File                                 						#cumulatively adding field 4
+     awk '/MAX_RD/ {print $0}' File                         			     		#Search Pattern then take action
+     awk '{if ($2 !=0  )printf("%2.2f%\n",($1-$2)/$2*100); else printf("0.0\n")}' file 	#comparing then calculating percentage
+   	awk '{for(i=1;i<=13;i++){printf("%-14s ",$i)};printf "\n"}'						#for loop inside awk command
+     awk '{ if ($5 == "PER" ) {printf ("%-1s %-1s \n",$1,$2) } else {print $0}}' file   	#comparing field 5 and then taking action
+     awk '{ if (/^MP|C/) {print $1,$2,$3 }}'  file								#prints lines begining with MP or C
+     awk '{ if ($2~/^ST/) {printf ("%s %s %s 1f\n",$1,$2,$3) } }'  file				#prints lines having ST in IInd field
+     awk '{ if ($2~/ST/&& $6~/pmos/) {print $1,$2,$3} }'  file						#prints lines having ST in IInd field and pmos in VIth field
+	awk '{split($7,arr,"="); print arr[2]}' file									#splits field 7 on delimiter '=' and stores in array 'arr'
+
+	
+  
+     .................................................................................................................................
+
+---------
+39.grep
+---------
+
+
+
+foreach cell (`cat cellList |grep -v "^[ ]*#"`)
+better to use '' instead of "" if no shell variable is used
+' ' is a file and ; is new line :sed '/two/ s/1/2/; /three/ s/1/3/; /^$/ d' 
+
+	grep <pattern> file                                 		  				#find the line containing word
+	grep -m 2 <pattern> file												#only first two matches
+	grep -w <pattern> file						 						#find the line containing only that word
+	grep -i <pattern> file   					  						#i means case insensitive
+	grep -A 5 <pattern> file 											#searchs and prints 5 lines coming after the pattern
+	grep -B 5 <pattern> file 											#searchs and prints 5 lines coming before the pattern
+	grep -C 5 <pattern> file 											#searchs and prints 5 lines before and after the pattern
+	grep -o <pattern> file												#show only the part of a line matching pattern
+	grep dec_eval1 ../DECODER_all/SPREG_decoder_cell_0c | grep ^C | awk '{print s +=$4}'
+	grep ^C |sed -e 's/\*mpar\*Cfactor//g' |sed -e "s/'//g" |awk '{print s+=$4}'
+    	grep ^R mafprf.ctot | grep WLR_AFX | sort -k4
+ 	grep ^C SPICE.SPI_MODIF | grep -v ^X | grep blt | grep -v TBD | awk '{print s +=$4}'
+	grep FPT2_RD\*\[0\] EM_IR_NASIM                          					#out Put---FPT2_RD0_CLK,FPT2_RD0_AR[21]
+     	 mafprf.ctot | grep WLR_AFX | sort -k4
+     ch|ha1latch|ha2latch|ha3latch|ha4latch|mhtopbotlatch|net42|net48" $file >${file}_new
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+------------------------------------
+40.cat sed grep awk piped together
+-----------------------------------
+ 										#piping | means sending output of one command as input to other command
+
+     cat File | grep -v ^$                                  	  		#to remove blank line
+     cat File | grep -v "cat\|dog"                          	  		#to grep either cat or dog Expression must be in "" 'NEW'
+     cat File | grep '\[[0-90-9]]                          		  		#will grep all like [10] [82] [34]
+     cat : | grep ^M
+     cat 1phs130_IO_nbt.rcbc.sp | grep ^M | awk '{print $4}'		     	#prints fourth field of lines starting with letter M 
+     cat 1phs130_IO_nbt.rcbc.sp | grep ^M |grep SEN | awk '{print $4}'       	#prints fourth field of lines starting with letter M and containing word SEN
+     cat 1phs130_IO_nbt.rcbc.sp | grep ^M |grep -w SEN | awk '{print $3}'    	#prints only fields containing word SEN
+     cat 1phs130_IO_nbt.rcbc.sp | grep ^M |grep -w SEN | awk '{print NF}' 		#NF means number of fields
+     cat 1phs130_IO_nbt.rcbc.sp | grep ^M | awk '{print NF}'                 	#prints number of fields in rows starting with 'M'
+     cat 1phs130_IO_nbt.rcbc.sp | grep ^M | awk '{print $NF}'		     	# prints content of last field
+     cat 1phs130_IO_nbt.rcbc.sp | grep -v SEN | awk '{print $NF}'            	#-v means not containing word SEN
+     cat 1phs130_IO_nbt.rcbc.sp | grep -v SEN
+     cat 1phs130_IO_nbt.rcbc.sp | grep -v ^C
+     cat 1phs130_IO_nbt.rcbc.sp | grep ^C					
+     cat 1phs130_IO_nbt.rcbc.sp | grep ^C | grep -w SEN			     	#-w means only that word
+     cat 1phs130_IO_nbt.rcbc.sp | grep ^C | grep -w SEN | sed -e "s/f//g"
+     cat 1phs130_IO_nbt.rcbc.sp | grep ^C | grep -w SEN | sed -e "s/f//g" | awk '{print $4}'
+     cat 1phs130_IO_nbt.rcbc.sp | grep ^C | grep -w SEN | sed -e "s/f//g" | awk '{print $1,$2,$4}'
+     cat 1phs130_IO_nbt.rcbc.sp | grep ^C | grep -w SEN | sed -e "s/f//g" | awk '{print s+=$4}'
+     cat 1phs130_IO_nbt.rcbc.sp | grep ^C | grep -w SEN | sed -e "s/f//g" | awk '{print s+=$4}' 
+     cat 1phs130_IO_nbt.rcbc.sp | grep ^C | grep -w SEN | sed -e "s/f//g" | awk '{print (sqrt(s+=$4)}' | tail -2     	 #tail -2 means last two lines
+     cat 1phs130_IO_nbt.rcbc.sp | grep ^C | grep -w SEN | sed -e "s/f//g" | awk '{print sqrt(s+=$4)}' | head -3|head -2	 #only second last line
+     cat 1phs130_IO_nbt.rcbc.sp | grep ^M | awk '{printf("%-12s %-12s %-12s %-12s %-12s", $1, $2, $3, $4, $5)}'      	 #field formatting (- right + left)
+     cat 1phs130_IO_nbt.rcbc.sp | grep ^M | awk '{printf("%-12s %-12s %-12s %-12s %-12s\n", $1, $2, $3, $4, $5)}'    	 #field formatting,12 spaces each
+     cat 1phs130_IO_nbt.rcbc.sp | grep ^M | awk '{printf("%-12s %-12s %-12s \n%-12s %-12s\n", $1, $2, $3, $4, $5)}'
+     cat 1phs130_IO_nbt.rcbc.sp | grep ^M | awk '{printf("\ts %-12s %-12s \n%-12s %-12s\n", $1, $2, $3, $4, $5)}'
+     cat 1phs130_IO_nbt.rcbc.sp | grep ^M | awk '{printf("\t%s %-12s %-12s \n%-12s %-12s\n", $1, $2, $3, $4, $5)}'
+     grep <pattern> file |grep ^C |sed -e 's/\*mpar\*Cfactor//g' |sed -e "s/'//g" |awk '{print s+=$4}' 
+     cat sphs130_samp.rcbc.sp1 | sed -e '/^*/d' | tr "\n" " " | awk 'NR==1 {for (i=1;i<=NF;i++) print $i}'|tr "\n" ":"| awk '{split($NR,arr,":"); print arr[33]}' 
+
+
+
+#.......................................................misclaneous...........................................................................................#
+
+a.	command1 && command2				#executes command2 only if command1 is succesful
+b.	command1 || command2				#executes command2 only if command1 is unsuccesful
+c.      find ./verif -name "amd65gh":                 	#can be found directory or file
+        ./verif/emir/amd65gh
+        ./verif/noise/amd65gh
+d.      find . -name "mafpret.ckt.mod"
+
+e.   tr "[a-z]" "[A-Z]"				#translates lowercases into uppercases
+f.	tr "*" "#"			
+g.	tr "\n" " "					#translates a newline character with space
+h.	tr -d "\n"					#deletes newline character
+i.	$argv						#argument passing in Shell
+j.	ls | tee file					#prints on the terminal and appends in the file too
+#...............................................................SHELL scripting ..............................................................................#
+              			           	                        			 
+                        			
+                                
+41. #!  /bin/csh -f							#start the scripting file with this
+
+PID variable = $$
+Status varible = $#
+
+42.setting variable 
+	@ abc =15							#setting variable for numbers
+	set abc='hi how are you'					#setting variable for string
+
+	set outFile='/home/zia140/kalim/bitcellDC/snm/outFile'
+	cd $outFile
+	
+	set metalWidth = `echo $<`
+
+43.calling variables
+     $abc
+	
+44.printing 
+	echo hi how are you
+	echo '$abc'
+	printf hi how are you
+
+----------------------------------------------------------------------------------------------------------	
+45.while loop
+
+	@ i =1
+	while ($i <10)
+	echo $i
+	@ i +=1
+	end
+45.a
+
+	while( $i< $col)
+		   @ var = `expr $var + 1`
+	end
+
+45.b
+	while (($block_2d[$i][0]=~ /^X_/) or ($block_2d[$i][0]=~ /^M/)){$i+=1;}
+
+46.c
+	 until ($netlist[$i]=~/WEN/){
+	    $i+=1;}
+
+---------------------------------------------------------------------------------------------------------------
+46.if
+
+	if ( $Time ==  013000 ) then 
+     		set abc = xcvqehjcv
+     		echo  $abc
+	endif
+
+46.a
+	if ( -f $name ) then				#if file exists then print found 
+	   echo found 
+	endif
+46.b
+	if ( -e $name ) then				#if file/directory exists then take action
+46.c
+	if (! -e $name ) then				#if file/directory dosen't exists then take action
+
+46.d.if else 
+
+	if ($gds2top == $cell) then
+		set gds2_cellname = "$cell"
+	else if ($gds2top == $CELL) then
+		set gds2_cellname = "$CELL"
+	else
+		echo "$cell.sum contents does not match either $cell or $CELL"
+		exit
+	endif
+ 
+-------------------------------------------------------------------------------------------------------------
+47.foreach loop
+
+	foreach abc ( `ls` )				#runs ls and then assigns each output to variable abc 
+		echo $abc
+
+	end
+
+47.a.
+	foreach FoldLine (`cat ${Tran}.line`)
+        
+	end
+		  
+47.b.
+	foreach abc (`ls *spf*`)
+  		sed -e "s/\#[A-Za-z0-9]* / /g" -e "s/^R/\*\*R/g" -e "s/^r/\*\*r/g" $abc >m
+  		\rm $abc 
+  		mv m $abc
+	end
+
+
+----------------------------------------------------------------------------------------------------------
+48.shell commond in perl
+	
+	`cp -rf /home/zia140/shel/file`;       			#use the ``
+
+----------------------------------------------------------------------------------------------------------
+49.Inserting a fileawk '{split($7,arr,"="); print arr[2]}'
+
+    :r[ead] [name]     Insert the file [name] below the cursor.
+    :r[ead] !{cmd}     Execute {cmd} and insert its standard output below the cursor.
+
+
+
+
+#............................................................Sed/vi ......................................................
+
+NOTE:                   better to use '' instead of "" if no shell variable is used
+NOTE:                   pattern,pattern  line,pattern line,line, pattern to line  are the addressing mode
+2.0 Qualifiers;         (any character once ore more =>  .)             (preceeding charcter none or more => *) 
+                        (preceeding charcter once or more =>  +)        (preceeding charcter once or nonw => ?) 
+				    		        (any thing any number of times => .* )          ( any thing any number of times => []*)
+												(\w , \d , \s) (\w* , \d*, \s*)

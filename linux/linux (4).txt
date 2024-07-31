@@ -1,0 +1,581 @@
+Linus Torvalds,University of Helsinki,1991
+
+Why linux?
+ *linux is best suited for multiuser and multitask application.
+ *linux is more attractive because it comes free of cost,open source software
+ Note-unix and linux are case sensitive
+ *linux has very important concept called 'terminal",is the gateway to the linux os.
+
+Properties of Linux
+Linux Pros
+----------
+• Linux is free
+• Linux is portable to any hardware platform:
+• Linux was made to keep on running:
+• Linux is secure and versatile:
+• Linux is scalable:
+• The Linux OS and most Linux applications have very short debug-       
+  times
+
+Linux Cons
+----------
+• There are far too many different distributions
+• Linux is not very user friendly and confusing for beginners
+
+example of linux OS
+Debian,Ubuntu,Fedora,Arch linux
+
+
+Installing Linux in windows os
+ *Two ways
+    1.VM Ware
+         *linux os inside windows os
+    2.Cygwin
+        * How install cygwin
+          While installing cygwin choose the following packages
+            .PERL 
+            .Python
+            .TCL
+            .gvim
+Understanding Cygwin
+ *windows start type cygwin
+understanding cygwin directory struture
+  *System harddisk  is named as cygdrive
+  *All the drives of my windows os will be present under/cygdrive
+  *All directories(folders) are accessed using '/'(delimiter)separation
+  *In Linux 'Tab'key play an important roll
+  *tab button on keyboard is used to automatically fill the paths and names 
+
+echo 'alias ll="ls -l"' >> ~/.bash_profile
+bash:bourne again shell
+pwd:present working directory
+cd: change directory
+cd /:root directory
+cd ~:Home directory
+cd .. goes to previous directory
+cd ../../../ goes to previous directories(3 steps previous)
+cd path1/path2/path3/: Absolute Path
+cd 'dir name' :if directory name is 'my name'
+cd "dir name" :if directory name is "my name"
+cd dir\ name   :if directory name is my\ name
+clear:it clear the terminal screen
+ls:list the directory and files
+man <command>:manual of given command
+q: to exit from manual
+ls /:list of root directory contents
+ls ~:list of home directory contents
+ls dir_name: list of "dir_name" contents
+ls .. list the contents of previous directory
+ls -l:long listing format
+ls -a: list the hidden file and directories (list all files and directories)
+ls -la: long list with hidden directories
+ls -sl list the contents according to size
+ls -t : sort by time, newest first;
+ls -r : reverse order while sorting
+ls -ltr:long list with time and reverse sorting
+ls -d */:list of only directories
+
+File management
+---------------
+command used to create files are
+ *touch
+ *cat
+touch <filename1.ext> <filename2.ext> 
+touch filename{1..10}.txt
+How to open multiple files in vim editor
+vi <firstfilename> In vim give :tabnew <secondfilename>
+touch directory/filename --> this command create a file in a directory directly
+this command creates the file 
+ cat: its echoes what you typed
+*cat: concatenate files and print on the standard output
+ cat file_name:display the contents of the file
+ cat dir1/filename 
+ cat -b filename : add the line numbers to non-blank lines
+ cat -n filename : add the line numbers to all lines
+ cat > filename  : '>' this redirects and open the file for edit
+ cat >> filename : '>>' this appends and edit without overwriting the previous data of file
+cat file1 > file2 this command redirect the contents file1 to file2
+cat dir1/filename display the content of the filename.
+
+To create different type extention files with different names
+------------------------------------------------------------- 
+     for i in $(seq 1 5)
+     do
+     touch file$i.txt File$i.v newfile$i.py Sample$i.c Program$i
+     done
+
+Make Directories
+----------------
+mkdir <directory_name>: make directory
+mkdir <name1> <name2> <name3>
+mkdir <name1>/<name2>
+mkdir dir{1..10}
+mkdir -p <name1>/{name2,name3,name4}
+mkdir -p <name1>/<name2>/<name3>/<name4>
+mkdir -pv <name1>/<name2>/<name3>/<name4>
+mkdir -p  its creates the directories with parent directory with sub directory
+mkdir -pv print a message for each created directory
+ls -R list out the directory structure 
+ 
+rm & rmdir commands
+-------------------
+rmdir <dir_name>
+rmdir -p <name1>/<name2>/<name3>/<name4>
+rmdir -pv <name1>/<name2>/<name3>/<name4>
+rm -rv <name1> rv--> means recrussive verbose
+
+copying directories
+******************** 
+cp :{souce file/dir to destination file/dir}
+cp sum1 sum2; [sum1 is copied to sum2]
+cp filename{1..10}.txt directory
+cp -r dir1 new_dir {it creates a new_dir and copies the content of dir1} 
+cp -r dir1 dir3 { if dir3 already exists,it will copy the dir1 to dir3}{
+cp -i without overwrite
+cp ../test1.txt ../test2.txt . from previous directory it takes the files and copy to current directory [dot represent current directory]
+
+
+Move Directories/files
+
+mv source dir1 destination dir2 [dir1 moved to dir2]
+mv dir1 ./dir11/dir12/dir13/dir14 {note '.' represent current directory}in this above command dir1 moved to sub directory dir14
+mv -i file3.txt dir1
+how to rename directories
+mv junk junk1 {here the junk directory renamed as junk1} so 'mv' can be used for rename also
+ mv example /cygdrive/c/Users/VLSIGURU/Desktop/ this command will move directory 'example' to desktop by the path given my us.
+mv filename{1..10}.txt directory
+
+Note: 1.mv command we can move  single source_file to single destination_file
+      2.we can move multiple files to single directory (but the directory should exist)
+      3.we can move single directory to single directory(its not compulsory that  
+        destination directory should exist)
+      4.we can move multiple directories to single directories(but destination directory 
+        should exist)
+
+
+
+Meta Character/wildcard character
+--------------
+it is used in file regular expression
+it is used for pattern recognition 
+* all files/directories
+? single character
+[] anything between the range [a-z][A-Z][0-9]
+\  ignore the special meaning example: \?
+{} it is used for multiple patterns
+this characters used in regular expressions for pattern matching
+ls *.*-->it shows all files with extentions.
+ls * --> its shows all directories and files
+ls *.txt -->it shows all .txt files
+ls dir*.txt
+
+# lab1 ex: list out those names which has 3 characters only but it end with at least 2 numbers with any extension
+ls ?[0-9][0-9].*
+
+#lab2 list out all names which starts with d and end with s with any extention
+ls d*s.*
+
+# lab3
+ list out all names with 2 character with any extensions
+  ls ??.*
+# lab4 list out all names which starts with a or m or c with any extention
+  ls [amc]*.* 
+
+# lab4 list out all names with lower case with any extention
+ ls [a-z]*.*
+
+File permissions
+****************
+changes the permissions for files and directories
+3 types of users
+  # primary
+  # group
+  # others
+3 permissions for all users we have:
+   # read (r)
+   # write (w)
+   # execute (x)
+2 ways we can give permissions:
+   1. symbolic or text method
+   2. using mode number
+notations
+u:user
+g:group
+o:other
++:add permission
+-: remove permission
+r:read
+w:write
+x:execute
+
+command used to change permissions for files and directories is
+chmod : change mode
+chmod u-w+x,g+x-w,o-wx <file name> {symbolic or text method)
+      this command will change the permissions of user,group and others
+       note + and- are used to add permission and remove permissions repectively.
+chmod 777 new3.doc {using mode number} 777 is given to all user,group and others full permissions
+  
+       decimal       binary         permissions
+                     r w x
+          0          0 0 0               NO
+          1          0 0 1           Execute
+          2          0 1 0           write
+	  3          0 1 1           W & E
+          4          1 0 0           Read
+          5          1 0 1           R & E
+          6          1 1 0           R & W
+          7          1 1 1           R W & E
+
+what pipe?
+pipe are used to redirect a stream from one program to another program.
+the output of one command redirect it to the input of another "|" vertical bar
+command1 | command2 | command3 |... 
+
+ls -l | wc : it prints no.lines,no.of words and no. of bytes of all file present in current directory
+
+Miscellaneous Commands
+----------------------
+
+1.	ls  list all the files and directories.
+2.	pwd  present working directory.
+3.	head display the top 10 lines of the file.
+4.	Tail  Display the bottom 10 lines of the file.
+5.	Tac  Display the lines in the reverse order.
+6.	More  Similar to cat command. We can display large content. 
+7.	Less  we can display small content.
+8.	Id  Display the ID of the user (or) group.
+9.	Ping  check the network connectivity, status of network/server. 
+10.	Hostname  Display the owner name.
+11.	Ps  used to list the currently running processes and their PIDs along with some   
+        other information depends on different options.
+12.	Kill  It is used for manually terminating the processes. 
+13.	who  lets you display the users currently logged in to your UNIX or Linux 
+        operating system.
+14.	Whoami  It displays the username of the current user when this command is 
+        invoked.
+15.	Date displays current date and time
+16.	Cal  display current year calender
+
+File compare Commands
+---------------------
+
+1.	cmp  used to compare the two files byte by byte and helps you to find out 
+        whether the two files are identical or not.
+2.	diff  allows you to compare two files line by line. It can also compare the 
+        contents of directories. 
+3.	comm  compare two sorted files line by line and write to standard output; the    
+        lines that are common and the lines that are unique.
+4.	wc  used to find out number of lines, word count, byte and characters count in 
+        the files specified in the file arguments.
+5.	uniq   command-line utility that reports or filters out the repeated lines in a 
+        file.
+6.	find  search the file.
+        Syntax: find . –name “filename.txt” –type f
+             find . –iname “fdir_name” –type d
+             Find . –newer filename
+
+/path/to/search: The path to the directory you want to search. This could be an absolute path (e.g., /home/user) or a relative path (e.g., . for the current directory).
+
+-type f: The -type option is used to specify the type of file you’re searching for. In this case, we’re searching for regular files (f).
+
+-newermt YYYY-MM-DD: The -newermt option is used to specify that we want to search for files modified after a certain date. The date must be in the format YYYY-MM-DD.
+
+! -newermt YYYY-MM-DD: The ! operator negates the -newermt option, so this part of the command is used to specify that we want to search for files modified before a certain date. Again, the date must be in the format YYYY-MM-DD.
+
+find commands: find the file and directories in hiearchy order
+syntax: find ./ -name "filename" -type f or d
+ #lab1: find out all files which created 30mins before
+find ./ -name "*" -type f -cmin -40 (+n for greater than given n)
+# lab2: find out all files which created in this last week
+  find ./ -name "*" -type f -ctime -7
+# lab3 : find out all file which created on 16th sept 2023
+  find ./ -name "*" -type f -newermt "2023-09-16"
+
+1.example for tee command:
+The output of "ls -l" command should be saved to "output.txt" file and should be provided as input to wc command.
+
+##ls -l > output.txt | wc  [note: In the middle of piping if we use redirect(>) then it   
+  breaks piping.]
+ls -l | tee output.txt | wc 
+
+Tee commands:
+tee reads standard input and copies it both to standard output and for file.
+ls | tee files.txt
+
+2.example for xargs command:
+ test.txt is the file which contains some filenames.read the filename from test.txt and remove each files.
+
+xargs commands:
+it convert the standard input in to command line argument.
+cat file111.txt | xargs touch
+the contents of file are converted to file using xargs touch command
+cat file111.txt | rm -f 
+this delete the file which are convered by xargs command.
+alias "c=clear"
+alias "ll=ls -ltr"
+
+seq 100 | xargs -I {} mkdir folder{}
+
+Here's what each part of the command does:
+seq 100: Generates a sequence of numbers from 1 to 100.
+xargs -I {}: Reads each number from the sequence and substitutes it for '{}' place holder.
+mkdir folder{}: Creates a directory with the name 'folder' followed by the number generated by seq.
+
+
+ls | xargs echo "hi"
+
+environment variables
+---------------------
+envt variables are used to store info about the env in which program runs such as paths of files and directories,user preference and system setting.
+printenv--->command to check env variables.
+
+for examples:
+echo --> to print the contents of variables
+echo "$SHELL"
+echo "$BASH"
+echo "$USER"
+
+grep command [Global regular expression Print]
+----------------------------------------------
+The grep command in Unix/Linux is a powerful tool used for searching and manipulating text patterns within files. Its name is derived from the ed (editor) command g/re/p (globally search for a regular expression and print matching lines), which reflects its core functionality. grep is widely used by programmers, system administrators, and users alike for its efficiency and versatility in handling text data. In this article, we will explore the various aspects of the grep command.
+
+      syntax: grep[option] pattern[filename]
+
+        cat filename | grep pattern
+egrep command is used to search multiple regular patterns.
+
+difference between grep and egrep
+# egrep 'regular pattern and string pattern' filename
+# grep "string pattern" filename.
+-c--> display count of matching lines.
+-h--> display all the matching lines
+-l--> display all the filename in which pattern matches
+-n--> display all the matching lines with line number
+-v--> display all the non matching lines
+-o--> display only the matching pattern
+-e--> use multiple search patterns in single file.
+^---> match the lines which starts with given pattern
+char$-->end of the line with given char
+-i--> ignores the case sensitive
+-A{no.of lines} displays the lines after the search pattern eg: -A2
+-B{no.of lines} displays the lines before the search pattern eg: -B1
+-C{no.of lines} displays the lines after and before the search pattern eg: -C2
+
+
+###sed Commands## (line wise operation)
+------------
+SED command in LINUX stands for stream editor and it can perform lots of functions on file like searching, find and replace, insertion or deletion. Though most common use of SED command in LINUX is for substitution or for find and replace. By using SED you can edit files even without opening them, which is much quicker way to find and replace something in file, than first opening that file in VI Editor and then changing it.
+
+SED is a powerful text stream editor. Can do insertion, deletion, search and replace(substitution).
+SED command in unix supports regular expression which allows it perform complex pattern matching.
+Syntax:
+
+sed OPTIONS... [SCRIPT] [INPUTFILE...] 
+
+1.How to show only a given line or range of line?
+   sed -n '1p' filename (print first line)
+   sed -n '2,4p' filename (print the lines from 2 to 4) 
+
+2.How to see all the users from india country?
+  sed -n '/India/p' data1.txt
+
+3.How to use multiple expression in sed command?
+  sed -n -e '2p' -e '5p' data1.txt
+4.How to see next 4 lines from 2nd line?
+  sed -n '2,+4p' data1.txt
+
+5.How to see every 2nd line from the first line?
+ sed -n '1~2p' data1.txt
+
+6.How to replace a word in a file & show?
+  sed 's/Bont/Banu/g' data1.txt
+
+7.How to change Paul user country name?
+  sed '/paul/s/India/japan/g' data1.txt
+
+8.How to change the salary of a user?
+  sed '/Loki/s/55000/45000/g' data1.txt
+
+9.How delete the lines?
+  sed '1d' data1.txt (deletes first line)
+  sed '$d" data1.txt (deletes last line of the file)
+
+10.How to add a particular data of existing file to new file?
+   sed '/India/W Indianuser' data1.txt
+
+11.How to add a data in any line?
+   sed '/Loki/a Hellouser' data1.txt
+   
+12.How to edit existing line instead of adding new line?
+   sed '4 c Hellouser' data1.txt
+
+ Examples for search and replace
+---------------------------------
+1. search and replace all 2nd occurance of word "cat" with "dog"?
+   sed 's/cat/dog/2' animals.txt
+2. search and replace all occurance of word "dog" with "cat"?
+   sed 's/dog/cat/g' animals.txt
+3. search and replace all occurance except 1st occurance of word "dog" with "cat"
+   sed 's/dog/cat/2g' animals.txt
+
+Examples for replacing string on specific line numbers
+------------------------------------------------------
+1. search and replace all cat with tiger only for 2nd line.
+   sed '2s/cat/tiger/g' animals.txt
+   sed '2!s/cat/tiger/g' animals.txt (it will altert all lines accept 2nd line)
+
+2. search and replace all cat with tiger from 3rd to 5th line
+   sed '3,5s/cat/tiger/g' animals.txt 
+
+3. print only replaced lines ie.from 3rd to 6th range which has replaced in  2nd occurance of "cat" to "tiger"
+ sed -n '3,6s/cat/tiger/2p' animals.txt
+
+
+
+awk commands
+------------
+it is used for text processing. it acts like a scripting lanuage used for manipulation of data.
+it is also helpful in command line tiny program can be written in the form statements
+
+NR: NR command keeps a current count of the number of input records. Remember that records are usually lines. Awk command performs the pattern/action statements once for each record in a file. 
+NF: NF command keeps a count of the number of fields within the current input record. 
+FS: FS command contains the field separator character which is used to divide fields on the input line. The default is “white space”, meaning space and tab characters. FS can be reassigned to another character (typically in BEGIN) to change the field separator. 
+RS: RS command stores the current record separator character. Since, by default, an input line is the input record, the default record separator character is a newline. 
+OFS: OFS command stores the output field separator, which separates the fields when Awk prints them. The default is a blank space. Whenever print has several parameters separated with commas, it will print the value of OFS in between each parameter. 
+ORS: ORS command stores the output record separator, which separates the output lines when Awk prints them. The default is a newline character. 
+Examples:
+1) To print the squares of first numbers from 1 to n say 6:
+   awk 'BEGIN { for(i=1;i<=6;i++) print "square of", i, "is",i*i; }'
+
+2) Print 3rd and 4th fields in given data
+   echo welcome to Vlsiguru center bangalore | awk '{print $3,$4}'
+
+awk is a powerful text-processing language in Unix/Linux used for pattern scanning and processing. It is particularly useful for handling data in text files, especially in a column-based format.
+
+Here are some common awk command examples:
+
+1. Basic Structure
+  awk 'pattern {action}' file
+2. Print Specific Columns
+   Print the first and third columns of a file:
+   awk '{print $1, $3}' filename
+3. Print Lines Matching a Pattern
+   Print lines containing the word "Rama":
+   awk 'BEGIN {IGNORECASE=1} /Pattern/' filename [to ignore the case sensitive]
+4. Print Lines with a Specific Field Value
+   Print lines where the second column is greater than 100:
+   awk '$2 > 100' filename
+5. Use Field Separator
+   Specify a field separator other than whitespace (e.g., comma):
+   awk -F , '{print $1, $3}' filename
+6. Count Lines
+   Count the number of lines in a file:
+   awk 'END {print NR}' filename
+7. Sum a Column
+   Sum the values in the second column:
+   awk '{sum += $2} END {print sum}' filename
+8. Average of a Column
+   Calculate the average of the values in the second column:
+   awk  '{sum += $2; count++} END {print sum/count}' filename
+9. Print Line Number and Content
+   Print the line number followed by the line content:
+   awk '{print NR, $0}' filename
+10. Use Variables
+    Use an awk variable to filter and process data:
+    awk -v threshold=100 '$2 > threshold {print $1, $2}' filename
+11. Pattern Matching with Actions
+    Print lines containing "error" and prepend "Error found:" to each line:
+    awk '/error/ {print "Error found:", $0}' filename
+12. Conditional Statements
+    Use if statements for more complex conditions:
+    awk '{if ($2 > 100) print $1, $2; else print "Value too low:", $2}' filename
+13. String Operations
+    Print lines where the third column contains the string "abc":
+    awk '$3 ~ /abc/' filename
+14.Combine with Other Commands
+   Combine awk with other commands using pipes:
+   ls -l | awk '{print $9, $5}' 
+15. Example Data File (data.txt)
+    John,25,5000
+    Jane,30,6000
+    Doe,22,4000
+Using this file, here are some example commands:
+
+Print names and ages:
+  awk -F, '{print $1, $2}' data.txt
+  Print names of people earning more than 5000:
+  awk -F, '$3 > 5000 {print $1}' data.txt
+Calculate total earnings:
+  awk -F, '{sum += $3} END {print sum}' data.txt
+         
+Prompt String (PS1)-->Prompt env variable
+-------------------------------------------
+PS1 is called primary prompt string and it is the default interaction prompt.
+Bash allows these prompt strings (PS) to be customized by inserting a number of backslash-escaped special characters that are decoded as follows:
+
+\a : an ASCII bell character (07)
+\d : the date in "Weekday Month Date" format (e.g., "Tue May 26")
+\D{format} : the format is passed to strftime(3) and the result is inserted into the prompt string; an empty format results in a locale-specific time representation. The braces are required
+\e : an ASCII escape character (033)
+\h : the hostname up to the first '.'
+\H : the hostname
+\j : the number of jobs currently managed by the shell
+\l : the basename of the shellâ€™s terminal device name
+\n : newline
+\r : carriage return
+\s : the name of the shell, the basename of $0 (the portion following the final slash)
+\t : the current time in 24-hour HH:MM:SS format
+\T : the current time in 12-hour HH:MM:SS format
+\@ : the current time in 12-hour am/pm format
+\A : the current time in 24-hour HH:MM format
+\u : the username of the current user
+\v : the version of bash (e.g., 2.00)
+\V : the release of bash, version + patch level (e.g., 2.00.0)
+\w : the current working directory, with $HOME abbreviated with a tilde
+\W : the basename of the current working directory, with $HOME abbreviated with a tilde
+\! : the history number of this command
+\# : the command number of this command
+\$ : if the effective UID is 0, a #, otherwise a $
+\nnn : the character corresponding to the octal number nnn
+\\ : a backslash
+\[ : begin a sequence of non-printing characters, which could be used to embed a terminal control sequence into the prompt
+\] : end a sequence of non-printing characters
+
+Some commonly used ENVs in Linux
+Environment Variables
+
+Description
+
+$USER
+
+Gives search path for commands.
+
+$PATH
+
+Gives search path for commands.
+
+$HOME
+
+Gives path of home directory.
+
+$PWD
+
+Gives the path of present working directory.
+
+$HOSTNAME
+
+Gives name of the host.
+
+$LANG
+
+Gives the default system language.
+
+$EDITOR
+
+Gives default file editor.
+
+$UID
+
+Gives user ID of current user.
+
+$SHELL	Gives location of current user’s shell program.
