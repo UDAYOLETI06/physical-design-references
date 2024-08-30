@@ -9,3 +9,4 @@ https://eecs.wsu.edu/~daehyun/teaching/2020_EE434/Labs/tutorial-innovus.pdf
 
 
 column -s, -t < results.csv | less -#2 -N -S | cat > filename  -----> to make the csv file in to table format
+specifyCellPad CKBD18BWP16P90 -left 1 -top 1 -right 1 -bottom 1 
