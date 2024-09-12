@@ -13,3 +13,4 @@ specifyCellPad CKBD18BWP16P90 -left 1 -top 1 -right 1 -bottom 1
 createPlaceBlockage 14.38850 97.9210 20.16450 100.22200 50
 innovus 26> ecoChangeCell -inst FE_OFC27_n_3641 -cell INVD4BWP16P90
 innovus 29> report_timing -from if_stage_i_instr_rdata_id_o_reg[24]/Q -to if_stage_i_instr_rdata_alu_id_o_reg[2]/SN -through FE_OFC27_n_3641    
+get_lib_cells --> to get the max drivestrength of the cell
