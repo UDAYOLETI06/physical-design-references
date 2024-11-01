@@ -20,3 +20,8 @@ innovus 26> ecoChangeCell -inst FE_OFC27_n_3641 -cell INVD4BWP16P90
 innovus 29> report_timing -from if_stage_i_instr_rdata_id_o_reg[24]/Q -to if_stage_i_instr_rdata_alu_id_o_reg[2]/SN -through FE_OFC27_n_3641    
 
 get_lib_cells --> to get the max drivestrength of the cell
+
+#####################################
+Identify the Process Using the File:
+You can use the lsof (list open files) command to find out which process is using the file. Run the following command:
+lsof | grep .nfs000000000148fb4400000210
