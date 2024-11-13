@@ -25,3 +25,6 @@ get_lib_cells --> to get the max drivestrength of the cell
 Identify the Process Using the File:
 You can use the lsof (list open files) command to find out which process is using the file. Run the following command:
 lsof | grep .nfs000000000148fb4400000210
+
+#########
+gui_write_picture -format gif filename
