@@ -28,3 +28,11 @@ lsof | grep .nfs000000000148fb4400000210
 
 #########
 gui_write_picture -format gif filename
+
+
+
+to highlight paths 
+
+report_timing -output_format gtd -max_paths 100 -path_exceptions all -late -group Reg2ClkGate  > abc.mtarpt
+read_timing_debug_report  abc.mtarpt
+gui_gtd_highlight_timing_report -in_file ./abc.mtarpt -color_index 1 -paths 10
